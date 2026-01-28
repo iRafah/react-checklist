@@ -1,5 +1,6 @@
 import { ChecklistsWrapper } from "./components/ChecklistsWrapper"
 import { Container } from "./components/Container"
+import { Dialog } from "./components/Dialog"
 import { FabButton } from "./components/FabButton"
 import { Footer } from "./components/Footer"
 import { Header } from "./components/Header"
@@ -60,6 +61,9 @@ function App() {
             <IconSchool /> Plano de estudos
           </Heading>
         </Header>
+
+        <Dialog></Dialog>
+
         <ChecklistsWrapper>
           <SubHeading>Para estudar</SubHeading>
           <ToDoList>
