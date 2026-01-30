@@ -1,10 +1,15 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './dialog.style.css';
+import { IconClose } from '../icons';
 
-export function Dialog() {
-
+export function Dialog({ isOpen, onClose, children }) {
     // https://react.dev/reference/react/useRef
     const dialogRef = useRef(null)
+
+    // https://react.dev/reference/react/useEffect
+    useEffect(() => {
+        isOpen ? openDialog() : closeDialog();
+    }, [isOpen]);
 
     // Show the dialog when the show button is clicked.
     const openDialog = () => {
@@ -18,11 +23,18 @@ export function Dialog() {
 
     return (
         <>
-            <dialog ref={dialogRef}>
-                <button autoFocus onClick={closeDialog}>Close</button>
-                <p>This modal</p>
+            <dialog ref={dialogRef} className="dialog">
+                <div className="btn-close-wrapper">
+                    <button
+                        autoFocus
+                        onClick={onClose}
+                        className="btn-close"
+                    >
+                        <IconClose />
+                    </button>
+                </div>
+                {children}
             </dialog>
-            <button onClick={openDialog}>Show the dialog</button>
         </>
     )
 }
