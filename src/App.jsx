@@ -11,6 +11,7 @@ import { IconPlus, IconSchool } from "./components/icons"
 import { SubHeading } from "./components/SubHeading"
 import { ToDoItem } from "./components/ToDoItem"
 import { ToDoList } from "./components/ToDoList"
+import { ToDoForm } from "./components/ToDoForm"
 
 
 const todos = [
@@ -61,6 +62,21 @@ function App() {
   const toggleDialog = () => {
     setShowDialog(!showDialog)
   }
+
+  const addTodo = (event) => {
+    console.log("Add new todo")
+
+    todos.append({
+      id: todos.length + 1,
+      description: event.target[0].value,
+      completed: false,
+      createdAt: new Date().toISOString().split('T')[0]
+    })
+
+    toggleDialog()
+
+  }
+
   return (
     <main>
       <Container>
@@ -86,7 +102,7 @@ function App() {
           <Footer>
 
             <Dialog isOpen={showDialog} onClose={toggleDialog}>
-              <p>This is a modal</p>
+              <ToDoForm onSubmit={addTodo}></ToDoForm>
             </Dialog>
 
             <FabButton onClick={toggleDialog}>
