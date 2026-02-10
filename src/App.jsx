@@ -1,80 +1,56 @@
+import { use, useState } from "react"
 import { ChecklistsWrapper } from "./components/ChecklistsWrapper"
 import { Container } from "./components/Container"
+import { Dialog } from "./components/Dialog"
 import { FabButton } from "./components/FabButton"
 import { Footer } from "./components/Footer"
 import { Header } from "./components/Header"
 import { Heading } from "./components/Heading"
 import { IconPlus, IconSchool } from "./components/icons"
-import { SubHeading } from "./components/SubHeading"
-import { ToDoItem } from "./components/ToDoItem"
-import { ToDoList } from "./components/ToDoList"
-
-const todos = [
-  {
-    id: 1,
-    description: "JSX e componentes",
-    completed: false,
-    createdAt: "2022-10-31"
-  },
-  {
-    id: 2,
-    description: "Props, state e hooks",
-    completed: false,
-    createdAt: "2022-10-31"
-  },
-  {
-    id: 3,
-    description: "Ciclo de vida dos componentes",
-    completed: false,
-    createdAt: "2022-10-31"
-  },
-  {
-    id: 4,
-    description: "Testes unitários com Jest",
-    completed: false,
-    createdAt: "2022-10-31"
-  }
-]
-const completed = [
-  {
-    id: 5,
-    description: "Controle de inputs e formulários controlados",
-    completed: true,
-    createdAt: "2022-10-31"
-  },
-  {
-    id: 6,
-    description: "Rotas dinâmicas",
-    completed: true,
-    createdAt: "2022-10-31"
-  }
-]
+import { ToDoForm } from "./components/ToDoForm"
+import { ToDoGroup } from "./components/ToDoGroup"
+import ToDoContext from "./components/ToDoProvider/ToDoContext"
 
 function App() {
+
+  const [showDialog, setShowDialog] = useState(false)
+
+  const { todos, addTodo } = use(ToDoContext)
+
+  const toggleDialog = () => {
+    setShowDialog(!showDialog)
+  }
+
+  const handleFormSubmit = (formData) => {
+    addTodo(formData)
+    toggleDialog()
+  }
 
   return (
     <main>
       <Container>
         <Header>
           <Heading>
-            <IconSchool /> Plano de estudos
+            <IconSchool /> Study Plan
           </Heading>
         </Header>
+
         <ChecklistsWrapper>
-          <SubHeading>Para estudar</SubHeading>
-          <ToDoList>
-            {todos.map(function (t) {
-              return <ToDoItem key={t.id} item={t} />
-            })}
-          </ToDoList>
-          <SubHeading>Concluído</SubHeading>
-          <ToDoList>
-            {completed.map(function (t) {
-              return <ToDoItem key={t.id} item={t} />
-            })}
-          </ToDoList>
+          <ToDoGroup
+            heading="To study"
+            items={todos.filter(t => !t.completed)}
+          />
+          <ToDoGroup
+            heading="Finished"
+            items={todos.filter(t => t.completed)}
+          />
+
           <Footer>
-            <FabButton>
+            <Dialog isOpen={showDialog} onClose={toggleDialog}>
+              <ToDoForm onSubmit={handleFormSubmit}></ToDoForm>
+            </Dialog>
+
+            <FabButton onClick={toggleDialog}>
               <IconPlus />
             </FabButton>
           </Footer>
