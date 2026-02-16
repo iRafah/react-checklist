@@ -1,48 +1,47 @@
 ![](thumbnail.png)
 
-# App de Checklist de Estudos
+# Study Checklist App
 
-Um projeto prático desenvolvido passo a passo para quem já tem o básico de ReactJS e quer evoluir para construir aplicações mais organizadas, escaláveis e com experiência moderna. Ao longo do curso, criamos um app de checklist para organizar estudos, tarefas e o que mais precisar.
+A practical project developed step by step for those who already have a basic understanding of ReactJS and want to level up by building more organized, scalable applications with a modern user experience. Throughout the course, we create a checklist app to organize studies, tasks, and anything else you need.
 
-## 🔨 Funcionalidades do projeto
+## 🔨 Project Features
 
-* Adição, edição e exclusão de tarefas
-* Organização das tarefas em "Para estudar" e "Concluído"
-* Marcação de tarefas como concluídas
-* Feedback visual para lista vazia (empty state)
-* Modal para adicionar/editar tarefas
-* Lista animada de tarefas
+* Add, edit, and delete tasks  
+* Organize tasks into "To Study" and "Completed"  
+* Mark tasks as completed  
+* Visual feedback for empty list (empty state)  
+* Modal for adding/editing tasks  
+* Animated task list  
 
 ![](screen-capture.png)
 
-## ✔️ Técnicas e tecnologias utilizadas
+## ✔️ Techniques and Technologies Used
 
-O desenvolvimento do projeto aborda as seguintes técnicas e tecnologias:
+The project development covers the following techniques and technologies:
 
-* **useState e useEffect**: Gerenciamento de estado e persistência no localStorage
-* **useContext**: Contexto global para compartilhar estado das tarefas
-* **Componentização**: Componentes reutilizáveis como Button, FabButton, Dialog, TodoForm, TodoItem e TodoGroup
-* **Estilização com CSS Modules**: Organização dos estilos por componente
-* **Manipulação de formulários controlados**
-* **Persistência local com localStorage**: Salva as tarefas mesmo fechando o app
-* **Ícones SVG personalizados**
-* **Boas práticas de organização de código**
+* **useState and useEffect**: State management and persistence with localStorage  
+* **useContext**: Global context to share task state  
+* **Componentization**: Reusable components such as Button, FabButton, Dialog, TodoForm, TodoItem, and TodoGroup  
+* **Styling with CSS Modules**: Organizing styles by component  
+* **Controlled form handling**  
+* **Local persistence with localStorage**: Saves tasks even after closing the app  
+* **Custom SVG icons**  
+* **Code organization best practices**  
 
-## 🛠️ Como rodar o projeto
+## 🛠️ How to Run the Project
 
-Após baixar o projeto, siga os passos abaixo para executar localmente:
+After downloading the project, follow the steps below to run it locally:
 
-1. Certifique-se de que você já tem Node.js instalado ([guia oficial](https://nodejs.org/en/download/)).
-2. No terminal, navegue até a pasta do projeto e instale as dependências:
+1. Make sure you already have Node.js installed ([official guide](https://nodejs.org/en/download/)).  
+2. In the terminal, navigate to the project folder and install the dependencies:
 
 ```bash
 npm install
-```
 
-3. Execute o projeto:
+3. Run the project:
 
 ```bash
 npm run dev
 ```
 
-4. Acesse no navegador: [http://localhost:5173](http://localhost:5173) (Vite).
+4. Open in your browser: (http://localhost:5173) (Vite).

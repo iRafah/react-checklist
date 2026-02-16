@@ -2,13 +2,15 @@ import { TextInput } from '../TextInput'
 import { ActionButton } from '../ActionButton'
 import './todo-form.style.css'
 
-export function ToDoForm({ onSubmit }) {
+export function ToDoForm({ onSubmit, defaultValue }) {
     return (
         <form action={onSubmit} className='todo-form'>
             <TextInput
                 placeholder="Inform the item you want to add"
                 required
-                name="description" />
+                name="description" 
+                defaultValue={defaultValue}
+                />
             <ActionButton>
                 Save item
             </ActionButton>
