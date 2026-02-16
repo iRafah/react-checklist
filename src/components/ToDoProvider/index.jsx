@@ -8,6 +8,20 @@ export function ToDoProvider({ children }) {
     const storedTodos = localStorage.getItem(TODOS_KEY)
 
     const [todos, setTodos] = useState(storedTodos ? JSON.parse(storedTodos) : [])
+    const [showDialog, setShowDialog] = useState(false)
+    const [selectedTodo, setSelectedTodo] = useState()
+
+    const openFormTodoDialog = (todo) => {
+        if (todo) {
+            setSelectedTodo(todo)
+        }
+        setShowDialog(true)
+    }
+
+    const closeFormTodoDialog = () => {
+        setShowDialog(false)
+        setSelectedTodo(null)
+    }
 
     useEffect(() => {
         localStorage.setItem(TODOS_KEY, JSON.stringify(todos))
@@ -47,13 +61,32 @@ export function ToDoProvider({ children }) {
         })
     }
 
+    const editTodo = (formData) => {
+        setTodos(prevState => {
+            return prevState.map(t => {
+                if (t.id === selectedTodo.id) {
+                    return {
+                        ...t,
+                        description: formData.get('description')
+                    }
+                }
+                return t
+            })
+        })
+    }
+
     return (
         <ToDoContext
             value={{
                 todos,
                 addTodo,
                 toggleTodoCompleted,
-                deleteTodo
+                deleteTodo,
+                showDialog,
+                openFormTodoDialog,
+                closeFormTodoDialog,
+                selectedTodo,
+                editTodo
             }}
         >
             {children}

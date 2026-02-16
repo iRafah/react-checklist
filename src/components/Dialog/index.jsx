@@ -11,6 +11,15 @@ export function Dialog({ isOpen, onClose, children }) {
         isOpen ? openDialog() : closeDialog();
     }, [isOpen]);
 
+    useEffect(() => {
+        const dialog = dialogRef.current
+        dialog?.addEventListener('close', onClose)
+        return () => {
+            // Cleanup the event listener when the component is unmounted or when onClose changes
+            dialog?.removeEventListener('close', onClose)
+        }
+    }, [onClose])
+
     // Show the dialog when the show button is clicked.
     const openDialog = () => {
         dialogRef.current.showModal();
